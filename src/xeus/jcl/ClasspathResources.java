@@ -31,6 +31,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
@@ -166,7 +167,7 @@ public class ClasspathResources extends JarResources {
     public void loadResource(URL url) throws IOException {
         try {
             // Is Local
-            loadResource( new File( url.toURI() ), "" );
+            loadResource( new File( new URI(url.toString())/*url.getPath()*//*.toURI()*/ ), "" );
         } catch (IllegalArgumentException iae) {
             // Is Remote
             loadRemoteResource( url );

@@ -59,7 +59,7 @@ public abstract class AbstractClassLoader extends ClassLoader {
         loaders.add( parentLoader );
         loaders.add( currentLoader );
     }
-
+    
     public void addLoader(Loader loader) {
         loaders.add( loader );
     }
@@ -96,7 +96,8 @@ public abstract class AbstractClassLoader extends ClassLoader {
         }
 
         if( clazz == null )
-            throw new ClassNotFoundException( className );
+        	return getParent().loadClass(className);
+            //throw new ClassNotFoundException( className );
 
         return clazz;
     }
@@ -110,6 +111,8 @@ public abstract class AbstractClassLoader extends ClassLoader {
      */
 /*    @Override*/
     public InputStream getResourceAsStream(String name) {
+    	if(name.startsWith("/"))
+    		name=name.substring(1);
         Collections.sort( loaders );
         InputStream is = null;
 /*        for( Loader l : loaders ) {*/
@@ -122,8 +125,11 @@ public abstract class AbstractClassLoader extends ClassLoader {
             }
         }
 
-        if( is == null )
-            throw new ResourceNotFoundException( "Resource " + name + " not found." );
+	    if( is == null )
+	    	return getParent().getResourceAsStream(name);
+	    
+/*        if( is == null )
+            throw new ResourceNotFoundException( "Resource " + name + " not found." );*/
 
         return is;
 

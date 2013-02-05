@@ -40,7 +40,7 @@ public class Configuration {
         if( System.getProperty( JCL_SUPPRESS_COLLISION_EXCEPTION ) == null )
             return true;
 
-        return Boolean.parseBoolean( System.getProperty( JCL_SUPPRESS_COLLISION_EXCEPTION ) );
+        return Boolean.getBoolean( System.getProperty( JCL_SUPPRESS_COLLISION_EXCEPTION ) );
     }
 
     /**
@@ -56,7 +56,7 @@ public class Configuration {
         if( System.getProperty( clazz.getName() ) == null )
             return true;
 
-        return Boolean.parseBoolean( System.getProperty( clazz.getName() ) );
+        return Boolean.getBoolean( System.getProperty( clazz.getName() ) );
     }
 
     public static boolean isLocalLoaderEnabled() {

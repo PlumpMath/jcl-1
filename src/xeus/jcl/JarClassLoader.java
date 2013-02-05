@@ -60,6 +60,14 @@ public class JarClassLoader extends AbstractClassLoader {
         classes = Collections.synchronizedMap( new HashMap/*<String, Class>*/() );
         loaders.add( localLoader );
     }
+    
+/*    public JarClassLoader(ClassLoader parent)
+    {
+    	super(parent);
+        classpathResources = new ClasspathResources();
+        classes = Collections.synchronizedMap( new HashMap<String, Class>() );
+        loaders.add( localLoader );
+    }*/
 
     /**
      * Loads classes from different sources
