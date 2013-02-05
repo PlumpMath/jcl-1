@@ -12,12 +12,13 @@ public class ResourceConverter {
 	 * @throws FileNotFoundException 
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-		if(args.length!=2)
+		if(args.length!=3)
 		{
 			System.out.println("Usage:");
-			System.out.println("java ResourceConverter resourcePath javaPath");
+			System.out.println("java ResourceConverter resourcePath javaPath packageName");
+			System.out.println("example:");
+			System.out.println("java ResourceConverter graphics.zip SwtResource.java org.eclipse.swt.examples.graphics");
 			return;
 		}
 
@@ -29,6 +30,7 @@ public class ResourceConverter {
 			File out=new File(args[1]);
 			FileWriter fw=new FileWriter(out);//("E:\\JCGO\\java\\common\\com\\witwall\\jcl\\SwtResource.java");
 			String baseName=out.getName().replaceFirst("[.][^.]+$", "");
+			String packageName=args[2];
 			
 /*			fw.write("import xeus.jcl.JarClassLoader;\n");
 			fw.write("import com.witwall.Base64;\n");
@@ -49,7 +51,7 @@ public class ResourceConverter {
 			fw.write("\t}\n");
 			
 			fw.write("}\n\n");*/
-			fw.write("package com.witwall.jcl;\n");
+			fw.write("package "+packageName+";\n");
 			fw.write("\n");
 			fw.write("import xeus.jcl.JarClassLoader;\n");
 			fw.write("import com.witwall.jcl.Base64;\n");
